@@ -1,4 +1,6 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
+import os
+import crawler
 
 app = Flask(__name__)
 
@@ -8,7 +10,15 @@ def all():
     callback = request.args.get('callback')
     hastag = request.args.get('hashtag')
     depth = request.args.get('depth')
-    return '{0}({1})'.format(callback, {'client_ip':ip,'hastag':hastag,'depth':depth})
+    #crawler.getjson(hashtag)
+    return send_from_directory('json', /home/pi/RecursiveJugendhackt.json)
+
+@app.route('/debug')
+def debug():
+    ip = request.remote_addr
+    list = os.listdir("/home/pi/Hashdistribution/backend/.cache/") # dir is your directory path
+    cache_status = len(list)
+    return '<b>Client IP:</b> ' + ip + '<hr><b>Cache:</b> ' + str(cache_status) + ' Dateien<hr>'
 
 
 if __name__ == '__main__':
