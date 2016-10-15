@@ -10,6 +10,7 @@ def gettweets(hashtag):
     if (os.path.isfile(datei)):  # Wenn Cache existiert
         fmt = '%a %b %m %H:%M:%S %Y' #Sat Oct 15 11:24:47 2016
         systime = time.asctime( time.localtime(time.time()) )
+        print(hastag)
         datei = '{}.json'.format(hashtag)
         filetime = time.ctime(os.path.getmtime(datei))
         d1 = datetime.strptime(systime, fmt)
