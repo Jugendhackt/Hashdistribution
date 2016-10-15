@@ -3,11 +3,13 @@
 
 from TwitterSearch import *
 import json, configparser
-import os, sys
+import os, sys, time
 
 
 def gettweets(hashtag):
+    systime = time.asctime( time.localtime(time.time()) )
     datei = '{}.json'.format(hashtag)
+    filetime = time.ctime(os.path.getmtime(datei))
     if (os.path.isfile(datei)):  # Wenn Cache existiert
         with open(datei) as cachefile:  # Lese Cache aus
             return json.loads(cachefile.read())  # Gebe Cache aus
