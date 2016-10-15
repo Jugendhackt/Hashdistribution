@@ -14,8 +14,8 @@ def gettweets(hashtag):
         filetime = time.ctime(os.path.getmtime(datei))
         #d1 = datetime.strptime(systime, fmt)
         #d2 = datetime.strptime(filetime, fmt)
-        #daysDiff = (filetime-systime).days
-        #print(daysDiff)
+        daysDiff = (filetime-systime)
+        print(daysDiff)
         print(systime)
         print(filetime)
         with open(datei) as cachefile:  # Lese Cache aus
