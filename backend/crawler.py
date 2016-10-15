@@ -10,7 +10,7 @@ def chachetime(datei):
     filetime = os.path.getmtime(datei)
     global daysDiff
     daysDiff = (systime-filetime)
-    if(daysDiff < 3600): # Wenn Cache älter als 1 Stunde
+    if(daysDiff < 86400): # Wenn Cache älter als 1 Stunde
         return True # Chache aktuell
     else:
         return False # Neuen Cache erstellen
