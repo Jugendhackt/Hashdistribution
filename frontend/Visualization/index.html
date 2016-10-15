@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Hashdistribution</title>
+    <link rel="stylesheet" href="node_modules/vis/dist/vis.min.css">
+    <style>
+        body html {
+            min-height: 100%;
+            min-width: 100%;
+        }
+
+        #graph {
+            width: 1920px;
+            height: 1080px;
+        }
+    </style>
+</head>
+<body>
+<div id="graph"></div>
+<script src="node_modules/vis/dist/vis-network.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    var node = [];
+    var edges = [];
+    $.getJSON("http://100.100.219.102:8080/?hashtag=mate&depth=2", function (data) {
+        node.push({id: 9999, label: data.ht});
+        for (var i = 0; i < data.childs.length; ++i) {
+            node.push({id: i, label: data.childs[i].ht, title: data.childs[i].count});
+            edges.push({from: 9999, to: i, value: data.childs[i].count / 2, label: data.childs[i].count});
+            for (var a = 0; a < data.childs[i].childs.length; a++) {
+                node.push({
+                    id: i * 10 + a + 50,
+                    label: data.childs[i].childs[a].ht,
+                    title: data.childs[i].childs[a].count
+                });
+                edges.push({
+                    from: i,
+                    to: i * 10 + a + 50,
+                    value: data.childs[i].childs[a].count / 2,
+                    label: data.childs[i].childs[a].count
+                });
+            }
+        }
+        var container = document.getElementById('graph');
+        var data1 = {
+            nodes: new vis.DataSet(node),
+            edges: new vis.DataSet(edges)
+        };
+        var options = {
+            nodes: {
+                shape: 'dot'
+            }
+        };
+        var network = new vis.Network(container, data1, options);
+    });
+
+
+</script>
+
+</body>
+</html>
