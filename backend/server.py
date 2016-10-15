@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, send_from_directory
 import os
 import crawler
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def all():
@@ -11,7 +11,7 @@ def all():
     hastag = request.args.get('hashtag')
     depth = request.args.get('depth')
     #crawler.getjson(hashtag)
-    return send_from_directory('json', "/home/pi/RecursiveJugendhackt.json")
+    return app.send_static_file('/home/pi/RecursiveJugendhackt.json')
 
 @app.route('/debug')
 def debug():
