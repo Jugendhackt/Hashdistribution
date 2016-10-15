@@ -5,15 +5,17 @@ import TweetReader
 
 app = Flask(__name__, static_url_path='')
 
-@app.route('/')
+@app.route('/', methods=['POST', 'OPTIONS'])
 def all():
+    response.headers.add('Access-Control-Allow-Origin', '*')
     ip = request.remote_addr
     callback = request.args.get('callback')
     hashtag = request.args.get('hashtag')
     depth = request.args.get('depth')
     #crawler.getjson(hashtag)
     json = TweetReader.getTopHashtags(hashtag, depth)
-    return json
+    callback = request.args.get('callback')
+    return '{0}({1})'.format(callback, json)
 
 @app.route('/debug')
 def debug():
