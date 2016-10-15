@@ -22,7 +22,6 @@ def gettweets(hashtag):
         with open(datei) as cachefile:  # Lese Cache aus
             print("Ausgabe aus Cache " + datei)
             print("Cache wurde zuletzt vor " + str(round(daysDiff / 3600, 2)) + " Stunde/n aktualisiert.")
-            print("Nächste Aktualisierung in: " + str(100-(round(daysDiff / 3600, 2))) + " Stunden.")
             return json.loads(cachefile.read())  # Gebe Cache aus
 
     try:
