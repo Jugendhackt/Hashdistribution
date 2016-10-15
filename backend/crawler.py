@@ -61,6 +61,9 @@ def gettweets(hashtag):
             tweetsasjson = json.dumps(tweets)
             cachefile.write(tweetsasjson)
 
+        if (datei == "jugendhackt.json"):
+            os.system("sudo cp /home/pi/Hashdistribution/backend/jugendhackt.json /var/www/html/data/jh.json")
+            print("Startseiten Tweets aktualisiert!")
         return tweets
 
     except TwitterSearchException as e:  # take care of all those ugly errors if there are some
