@@ -8,8 +8,8 @@ app = Flask(__name__, static_url_path='')
 CORS(app)
 
 @app.route('/', methods=['POST', 'OPTIONS'])
-@crossdomain(origin='*')
 def all():
+    response.headers.add('Access-Control-Allow-Origin', '*')
     ip = request.remote_addr
     callback = request.args.get('callback')
     hashtag = request.args.get('hashtag')
