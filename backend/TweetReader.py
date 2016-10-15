@@ -45,7 +45,7 @@ def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
 
 def getTopHashtags(hashtag, maxdepth):
     hashtagdict = {}
-    finallist = list(crawlHashtags(hashtag, hashtagdict, maxdepth).values())
+    finallist = list(crawlHashtags(hashtag, hashtagdict, int(maxdepth)).values())
     finaldict = {"ht": main_hashtag, "count": 1, "childs": finallist}
     return json.dumps(finaldict)
 
