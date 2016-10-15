@@ -14,6 +14,7 @@ def gettweets(hashtag):
     d1 = datetime.strptime(systime, fmt)
     d2 = datetime.strptime(filetime, fmt)
     daysDiff = (d2-d1).days
+    print("JETZT SAGE ICH ETWAS")
     print(daysDiff)
     if (os.path.isfile(datei)):  # Wenn Cache existiert
         with open(datei) as cachefile:  # Lese Cache aus
