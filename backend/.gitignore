@@ -1,0 +1,9 @@
+# secret config files
+config.ini
+
+# virtual environment
+venv/
+__pycache__/
+
+# JetBrains IDE
+.idea
