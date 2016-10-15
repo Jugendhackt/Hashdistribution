@@ -5,7 +5,8 @@ import TweetReader
 
 app = Flask(__name__, static_url_path='')
 
-@app.route('/')
+@app.route('/', methods=['POST', 'OPTIONS'])
+@crossdomain(origin='*')
 def all():
     ip = request.remote_addr
     callback = request.args.get('callback')
