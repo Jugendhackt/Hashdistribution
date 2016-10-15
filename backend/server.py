@@ -1,26 +1,66 @@
 from flask import Flask, jsonify, request, send_from_directory
 import os
+
+from flask import Response
+
 import crawler
 import TweetReader
 
 app = Flask(__name__, static_url_path='')
 
+
+@app.before_request
+def option_autoreply():
+    if request.method == 'OPTIONS':
+        resp = app.make_default_options_response()
+
+        headers = None
+        if 'ACCESS_CONTROL_REQUEST_HEADERS' in request.headers:
+            headers = request.headers['ACCESS_CONTROL_REQUEST_HEADERS']
+
+        h = resp.headers
+
+        # Allow the origin which made the XHR
+        h['Access-Control-Allow-Origin'] = request.headers['Origin']
+        # Allow the actual method
+        h['Access-Control-Allow-Methods'] = request.headers['Access-Control-Request-Method']
+        # Allow for 10 seconds
+        h['Access-Control-Max-Age'] = "10"
+
+        # We also keep current headers
+        if headers is not None:
+            h['Access-Control-Allow-Headers'] = headers
+
+        return resp
+
+
+@app.after_request
+def set_allow_origin(resp):
+    h = resp.headers
+
+    # Allow crossdomain for other HTTP Verbs
+    if request.method != 'OPTIONS' and 'Origin' in request.headers:
+        h['Access-Control-Allow-Origin'] = request.headers['Origin']
+
+    return resp
+
 @app.route('/', methods=['GET', 'OPTIONS'])
 def all():
-    response.headers.add('Access-Control-Allow-Origin', '*')
+    #response.headers.add('Access-Control-Allow-Origin', '*')
     ip = request.remote_addr
     callback = request.args.get('callback')
     hashtag = request.args.get('hashtag')
     depth = request.args.get('depth')
-    #crawler.getjson(hashtag)
+    # crawler.getjson(hashtag)
     json = TweetReader.getTopHashtags(hashtag, depth)
     callback = request.args.get('callback')
     return '{0}({1})'.format(callback, json)
 
+
 @app.route('/debug')
 def debug():
     ip = request.remote_addr
-    list = os.listdir("/home/pi/Hashdistribution/backend/.cache/") # dir is your directory path
+    list = os.listdir("/home/pi/Hashdistribution/backend/.cache/")  # dir is your directory path
     cache_status = len(list)
     return '<b>Client IP:</b> ' + ip + '<hr><b>Cache:</b> ' + str(cache_status) + ' Dateien<hr>'
 
