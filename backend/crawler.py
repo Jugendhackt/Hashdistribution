@@ -56,11 +56,9 @@ def gettweets(hashtag):
         )
 
     tweets = set()
-    limit = 0
+
     for tweet in ts.search_tweets_iterable(tso):
-        if(limit >= 30):
-            tweets.add(tweet['text'])
-            limit+1
+        tweets.add(tweet['text'])
 
 
     tweets = list(tweets)
@@ -70,6 +68,6 @@ def gettweets(hashtag):
         cachefile.write(tweetsasjson)
 
     if (datei == "jugendhackt.json"):
-        os.system("sudo cp /home/pi/Hashdistribution/backend/.cache/jugendhackt.json /var/www/html/data/jh.json")
+        #os.system("sudo cp /home/pi/Hashdistribution/backend/.cache/jugendhackt.json /var/www/html/data/jh.json")
         print("Startseiten Tweets aktualisiert!")
     return tweets
