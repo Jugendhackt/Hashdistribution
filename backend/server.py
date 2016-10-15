@@ -11,7 +11,7 @@ def all():
     hastag = request.args.get('hashtag')
     depth = request.args.get('depth')
     #crawler.getjson(hashtag)
-    return send_from_directory('json', /home/pi/RecursiveJugendhackt.json)
+    return send_from_directory('json', "/home/pi/RecursiveJugendhackt.json")
 
 @app.route('/debug')
 def debug():
