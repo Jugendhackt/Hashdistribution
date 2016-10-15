@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 import os
 import crawler
 
@@ -11,7 +11,7 @@ def all():
     hastag = request.args.get('hashtag')
     depth = request.args.get('depth')
     #crawler.getjson(hashtag)
-    return '{0}({1})'.format(callback, {'client_ip':ip,'hastag':hastag,'depth':depth})
+    return send_from_directory('json', /home/pi/RecursiveJugendhackt.json)
 
 @app.route('/debug')
 def debug():
