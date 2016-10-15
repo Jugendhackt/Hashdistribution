@@ -10,10 +10,8 @@ import pprint
 main_hashtag = "#jugendhackt"
 max_int = 3
 
-hashtagdict = {}
 
-
-def crawlHashtags(hashtagToCrawl, indict, depth=0):
+def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
     outdict = copy.copy(indict)
     depth += 1
     try:
@@ -21,7 +19,7 @@ def crawlHashtags(hashtagToCrawl, indict, depth=0):
     except:  # take care of all those ugly errors if there are some
         return outdict
     hashtags = {}
-    if depth >= max_int:
+    if depth >= maxdepth:
         return outdict
     for tweet in json_data:
         tweettext = TweetParser.TweetText(tweet)
@@ -45,12 +43,16 @@ def crawlHashtags(hashtagToCrawl, indict, depth=0):
     return outdict
 
 
-finallist = list(crawlHashtags(main_hashtag, hashtagdict).values())
-finaldict = {"ht": main_hashtag, "count": 1, "childs": finallist}
+def getTopHashtags(hashtag, maxdepth):
+    hashtagdict = {}
+    finallist = list(crawlHashtags(hashtag, hashtagdict, maxdepth).values())
+    finaldict = {"ht": main_hashtag, "count": 1, "childs": finallist}
+    return finaldict
 
-with open(".cache/RecursiveJugendhackt.json", 'w') as cachefile:
-    # json.dump(hashtagdict, cachefile)
-    #import pdb;pdb.set_trace()
-    cachefile.write(json.dumps(finaldict))
+# with open(".cache/RecursiveJugendhackt.json", 'w') as cachefile:
+#    # json.dump(hashtagdict, cachefile)
+#    #import pdb;pdb.set_trace()
+#    cachefile.write(json.dumps(finaldict))
 
-print(json.dumps(finaldict, indent=4))
+
+# print(json.dumps(finaldict, indent=4))

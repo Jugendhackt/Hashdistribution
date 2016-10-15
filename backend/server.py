@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, send_from_directory
 import os
 import crawler
+import TweetReader
 
 app = Flask(__name__)
 
@@ -8,10 +9,11 @@ app = Flask(__name__)
 def all():
     ip = request.remote_addr
     callback = request.args.get('callback')
-    hastag = request.args.get('hashtag')
+    hashtag = request.args.get('hashtag')
     depth = request.args.get('depth')
     #crawler.getjson(hashtag)
-    return send_from_directory('json', "/home/pi/RecursiveJugendhackt.json")
+    json = TweetReader.getTopHashtags(hashtag, depth)
+    return json
 
 @app.route('/debug')
 def debug():
