@@ -49,6 +49,8 @@ def all():
     #response.headers.add('Access-Control-Allow-Origin', '*')
     ip = request.remote_addr
     callback = request.args.get('callback')
+    hashtag = "jugendhackt"
+    depth = "3"
     hashtag = request.args.get('hashtag')
     depth = request.args.get('depth')
     # crawler.getjson(hashtag)
