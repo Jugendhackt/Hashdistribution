@@ -8,7 +8,7 @@ import os, sys, time, json, configparser
 def chachetime(datei):
     systime = time.time()
     filetime = os.path.getmtime(datei)
-    daysDiff = (systime-filetime)
+    global daysDiff = (systime-filetime)
     if(daysDiff < 3600): # Wenn Cache älter als 1 Stunde
         return True # Chache aktuell
     else:
