@@ -16,13 +16,11 @@ class TweetText:
 
         text_parts = self.tweettext.split()
         for part in text_parts:
-            if part.startswith("#"):
-                hashtag = part.strip(stripchars)
-                hashtags.append(hashtag)
             if "#" in part:
                 pos = part.index("#")
                 hashtag = part[pos:]
+                hashtag = hashtag.strip(stripchars)
+                #import pdb;pdb.set_trace()
                 if hashtag not in hashtags:
-                    hashtag = hashtag.strip(stripchars)
                     hashtags.append(hashtag)
         return hashtags

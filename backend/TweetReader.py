@@ -2,39 +2,55 @@ import TweetParser
 import crawler
 import json
 import server
+import copy
+import pprint
 
-
-#with open("jugendhackt.json") as cachefile:
+# with open("jugendhackt.json") as cachefile:
 #     json_data = json.loads(cachefile.read())
-main_hashtag = "jugendhackt"
-max_int = 2
+main_hashtag = "#jugendhackt"
+max_int = 3
 
 hashtagdict = {}
 
 
-def crawlHashtags(hashtagToCrawl, hashtagdict, depth=1):
+def crawlHashtags(hashtagToCrawl, indict, depth=0):
+    outdict = copy.copy(indict)
     depth += 1
     try:
         json_data = crawler.gettweets(hashtagToCrawl)
     except:  # take care of all those ugly errors if there are some
-        return hashtagdict
-    hashtags = []
+        return outdict
+    hashtags = {}
     if depth >= max_int:
-        return hashtagdict
+        return outdict
     for tweet in json_data:
         tweettext = TweetParser.TweetText(tweet)
-        #print(tweettext.getHashtags(), tweet)
+        # print(tweettext.getHashtags(), tweet)
         for hashtag in tweettext.getHashtags():
-            if (hashtag.lower() != main_hashtag.lower()) and (len(hashtag) > 1):
-                hashtags.append(hashtag.lower())
+            if (hashtag.lower() != hashtagToCrawl.lower()) and (len(hashtag) > 1):
+                hashtag = hashtag.lower()
+                if hashtag in hashtags:
+                    hashtags[hashtag] += 1
+                else:
+                    hashtags[hashtag] = 1
+    hashtuples = hashtags.items()
+    sorted_tuple = sorted(hashtuples, key=lambda x: x[1])[-5:]
 
-    for hashtag in hashtags:
-        hashtagdict[hashtag] = crawlHashtags(hashtag, hashtagdict, depth)
+    for hashtag, count in sorted_tuple:
+        outdict[hashtag] = {}
+        outdict[hashtag]['ht'] = hashtag
+        outdict[hashtag]['count'] = count
+        outdict[hashtag]['childs'] = list(crawlHashtags(hashtag, indict, depth).values())
 
-    return hashtagdict
+    return outdict
 
-hashtagdict = crawlHashtags(main_hashtag, hashtagdict)
+
+finallist = list(crawlHashtags(main_hashtag, hashtagdict).values())
+finaldict = {"ht": main_hashtag, "count": 1, "childs": finallist}
 
 with open(".cache/RecursiveJugendhackt.json", 'w') as cachefile:
     # json.dump(hashtagdict, cachefile)
-    cachefile.write(json.dumps(hashtagdict))
+    #import pdb;pdb.set_trace()
+    cachefile.write(json.dumps(finaldict))
+
+print(json.dumps(finaldict, indent=4))

@@ -31,7 +31,7 @@ def gettweets(hashtag):
 
     print("Chache {} wird neu erstellt".format(datei))
     tso = TwitterSearchOrder()  # Twitter Objekt erstellen
-    tso.set_keywords(['#' + hashtag])  # Wir suchen nach einem hashtag
+    tso.set_keywords([hashtag])  # Wir suchen nach einem hashtag
     tso.set_language('de')  # Nur Deutsche Tweets
     tso.set_include_entities(False)  # Kein Entity Zeug ausgeben
 
