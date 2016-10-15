@@ -9,12 +9,12 @@ import os, sys, time, json, configparser
 def gettweets(hashtag):
     datei = '{}.json'.format(hashtag)
     if (os.path.isfile(datei)):  # Wenn Cache existiert
-        fmt = '%a %b %m %H:%M:%S %Y' #Sat Oct 15 11:24:47 2016
+        #fmt = '%a %b %m %H:%M:%S %Y' #Sat Oct 15 11:24:47 2016
         systime = time.asctime(time.localtime(time.time()))
         filetime = time.ctime(os.path.getmtime(datei))
-        d1 = datetime.strptime(systime, fmt)
-        d2 = datetime.strptime(filetime, fmt)
-        daysDiff = (d2-d1).days
+        #d1 = datetime.strptime(systime, fmt)
+        #d2 = datetime.strptime(filetime, fmt)
+        daysDiff = (filetime-systime).days
         print(daysDiff)
         with open(datei) as cachefile:  # Lese Cache aus
             return json.loads(cachefile.read())  # Gebe Cache aus
