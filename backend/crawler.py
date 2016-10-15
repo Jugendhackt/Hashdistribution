@@ -10,9 +10,9 @@ def chachetime(datei):
     filetime = os.path.getmtime(datei)
     daysDiff = (systime-filetime)
     if(daysDiff < 3600): # Wenn Cache älter als 1 Stunde
-        return true # Chache aktuell
+        return True # Chache aktuell
     else:
-        return false # Neuen Cache erstellen
+        return False # Neuen Cache erstellen
 
 
 def gettweets(hashtag):
