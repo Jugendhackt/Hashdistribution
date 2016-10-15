@@ -2,10 +2,8 @@
 # coding: utf8
 
 from TwitterSearch import *
-import json
-import os
-import sys
-import configparser
+import json, configparser
+import os, sys
 
 
 def gettweets(hashtag):
