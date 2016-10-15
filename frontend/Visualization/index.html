@@ -24,7 +24,7 @@
     var edges = [];
     var url_local = "data/hashtag.json";
     var url_pi = "http://100.100.219.102:8080/?hashtag=mate&depth=2";
-    $.getJSON(url_pi, function (data) {
+    $.getJSON(url_local, function (data) {
         node.push({id: 9999, label: data.ht});
         for (var i = 0; i < data.childs.length; ++i) {
             node.push({id: i, label: data.childs[i].ht, title: data.childs[i].count});
