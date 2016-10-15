@@ -1,5 +1,4 @@
 # Hashdistribution
+---
+##Explore which hashtags go together and analyze user data!
 
-Wir suchen # basierend zusammenhängende Tweets und zeigen diese visuell auf einer Website.
-
-Weiteres folgt...
