@@ -13,7 +13,7 @@ def all():
 @app.route('/debug')
 def debug():
     ip = request.remote_addr
-    return 'ip:' + ip + "bla"
+    return 'Client IP: ' + ip + "<hr>Commands:<br><li>clear_cache</li>"
 
 
 if __name__ == '__main__':
