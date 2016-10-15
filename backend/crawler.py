@@ -7,15 +7,15 @@ import os, sys, time, json, configparser
 
 
 def gettweets(hashtag):
-    fmt = '%a %b %m %H:%M:%S %Y' #Sat Oct 15 11:24:47 2016
-    systime = time.asctime( time.localtime(time.time()) )
-    datei = '{}.json'.format(hashtag)
-    filetime = time.ctime(os.path.getmtime(datei))
-    d1 = datetime.strptime(systime, fmt)
-    d2 = datetime.strptime(filetime, fmt)
-    daysDiff = (d2-d1).days
-    print(daysDiff)
     if (os.path.isfile(datei)):  # Wenn Cache existiert
+        fmt = '%a %b %m %H:%M:%S %Y' #Sat Oct 15 11:24:47 2016
+        systime = time.asctime( time.localtime(time.time()) )
+        datei = '{}.json'.format(hashtag)
+        filetime = time.ctime(os.path.getmtime(datei))
+        d1 = datetime.strptime(systime, fmt)
+        d2 = datetime.strptime(filetime, fmt)
+        daysDiff = (d2-d1).days
+        print(daysDiff)
         with open(datei) as cachefile:  # Lese Cache aus
             return json.loads(cachefile.read())  # Gebe Cache aus
 
