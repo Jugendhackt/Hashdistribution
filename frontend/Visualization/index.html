@@ -8,7 +8,6 @@
             min-height: 100%;
             min-width: 100%;
         }
-
         #graph {
             width: 1920px;
             height: 1080px;
@@ -23,7 +22,9 @@
 <script type="text/javascript">
     var node = [];
     var edges = [];
-    $.getJSON("http://100.100.219.102:8080/?hashtag=mate&depth=2", function (data) {
+    var url_local = "data/hashtag.json";
+    var url_pi = "http://100.100.219.102:8080/?hashtag=mate&depth=2";
+    $.getJSON(url_pi, function (data) {
         node.push({id: 9999, label: data.ht});
         for (var i = 0; i < data.childs.length; ++i) {
             node.push({id: i, label: data.childs[i].ht, title: data.childs[i].count});
