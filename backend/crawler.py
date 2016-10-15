@@ -22,6 +22,7 @@ def gettweets(hashtag):
     if not (os.path.isdir(".cache/")):
         os.system("mkdir .cache")
         print("Cache Ordner wurde erstellt!")
+        datei = '.cache/{}.json'.format(hashtag)
     if (os.path.isfile(datei) and chachetime(datei)):  # Wenn Cache existiert
         with open(datei) as cachefile:  # Lese Cache aus
             print("Ausgabe aus Cache " + datei)
