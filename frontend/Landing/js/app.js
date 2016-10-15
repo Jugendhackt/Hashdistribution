@@ -1,6 +1,15 @@
+function b_press() {
+    window.location = "/Visualization/";
+}
 $(document).ready(function () {
     init_bg();
     b();
+    check();
+    $("#sizing-addon1").click(function () {
+        check();
+    });
+});
+function check() {
     $(window).on("keydown", function (e) {
         var el = $("input:text").val();
         if (el.length != 0) {
@@ -9,17 +18,15 @@ $(document).ready(function () {
                     $("#handle").removeClass("hide");
                 } else {
                     !$("#handle").hasClass("hide") ? $("#handle").addClass("hide") : a();
-                    //TODO: Ajax call
+                    b_press();
                 }
 
             }
         }
     });
-});
+}
 function b() {
     $("#bgImg").animate({"top":"-10000px"}, 200000, "linear");
-
-
     var scrollPosition = [ self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,  self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop];
     var html = jQuery('html');
     html.data('scroll-position', scrollPosition);
