@@ -4,11 +4,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def all():
-    temp1 = 23.5
-    temp2 = 21.2
     ip = request.remote_addr
     callback = request.args.get('callback')
-    return '{0}({1})'.format(callback, {'client_ip':ip,'b':2,'temp1':temp1,'temp2':temp2})
+    hastag = request.args.get('hashtag')
+    depth = request.args.get('depth')
+    return '{0}({1})'.format(callback, {'client_ip':ip,'hastag':hastag,'depth':depth})
 
 
 if __name__ == '__main__':
