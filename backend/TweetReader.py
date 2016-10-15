@@ -47,7 +47,7 @@ def getTopHashtags(hashtag, maxdepth):
     hashtagdict = {}
     finallist = list(crawlHashtags(hashtag, hashtagdict, maxdepth).values())
     finaldict = {"ht": main_hashtag, "count": 1, "childs": finallist}
-    return finaldict
+    return json.dump(finaldict)
 
 # with open(".cache/RecursiveJugendhackt.json", 'w') as cachefile:
 #    # json.dump(hashtagdict, cachefile)
