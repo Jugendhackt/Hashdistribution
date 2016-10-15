@@ -13,7 +13,8 @@ def all():
     depth = request.args.get('depth')
     #crawler.getjson(hashtag)
     json = TweetReader.getTopHashtags(hashtag, depth)
-    return json
+    callback = request.args.get('callback')
+    return '{0}({1})'.format(callback, json)
 
 @app.route('/debug')
 def debug():
