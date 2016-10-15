@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 import os
+import crawler
 
 app = Flask(__name__)
 
@@ -9,6 +10,7 @@ def all():
     callback = request.args.get('callback')
     hastag = request.args.get('hashtag')
     depth = request.args.get('depth')
+    crawler.getjson(hashtag)
     return '{0}({1})'.format(callback, {'client_ip':ip,'hastag':hastag,'depth':depth})
 
 @app.route('/debug')
