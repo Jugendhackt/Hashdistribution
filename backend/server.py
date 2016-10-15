@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, send_from_directory
 import os
+import json
 
 from flask import Response
 
@@ -49,14 +50,17 @@ def all():
     #response.headers.add('Access-Control-Allow-Origin', '*')
     ip = request.remote_addr
     callback = request.args.get('callback')
-    hashtag = "jugendhackt"
-    depth = "3"
     hashtag = request.args.get('hashtag')
     depth = request.args.get('depth')
     # crawler.getjson(hashtag)
-    json = TweetReader.getTopHashtags(hashtag, depth)
+
+    if (hashtag is not None) and (depth is not None):
+        Json = TweetReader.getTopHashtags(hashtag, depth)
+    else:
+        return json.dumps('{ error:"Please add the arguments hashtag and depth" }')
+
     callback = request.args.get('callback')
-    return '{0}({1})'.format(callback, json)
+    return '{0}({1})'.format(callback, Json)
 
 
 @app.route('/debug')
