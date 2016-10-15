@@ -16,7 +16,7 @@ def debug():
     ip = request.remote_addr
     list = os.listdir("/home/pi/Hashdistribution/backend/.cache/") # dir is your directory path
     cache_status = len(list)
-    return 'Client IP: ' + ip + 'Cache: ' + str(cache_status)
+    return 'Client IP: ' + ip + '<hr>Cache: ' + str(cache_status) + 'Dateien<hr>'
 
 
 if __name__ == '__main__':
