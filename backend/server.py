@@ -14,12 +14,9 @@ def all():
 @app.route('/debug')
 def debug():
     ip = request.remote_addr
-    passwd = request.args.get('passwd')
-    cmd = request.args.get('cmd')
-    if (cmd == "clear_cache"):
-        os.system("rm /home/pi/Hashdistribution/backend/.cache/*")
-        return '<center><h4>Cache geleert!</h4></center>'
-    return 'Client IP: ' + ip + '<hr>Commands:<br><li>?cmd=clear_cache&passwd=12345</li>'
+    list = os.listdir("/home/pi/Hashdistribution/backend/.cache/") # dir is your directory path
+    cache_status = len(list)
+    return 'Client IP: ' + ip + 'Cache: ' + cache_status
 
 
 if __name__ == '__main__':
