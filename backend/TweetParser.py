@@ -12,18 +12,17 @@ class TweetText:
 
     def getHashtags(self):
         hashtags = []
-        stripchars = '.,;:?!"\'^`'
+        stripchars = '.,;:?!…"'
 
         text_parts = self.tweettext.split()
         for part in text_parts:
             if part.startswith("#"):
-                hashtag = part
-                hashtag.strip(stripchars)
+                hashtag = part.strip(stripchars)
                 hashtags.append(hashtag)
             if "#" in part:
                 pos = part.index("#")
                 hashtag = part[pos:]
                 if hashtag not in hashtags:
-                    hashtag.strip(stripchars)
+                    hashtag = hashtag.strip(stripchars)
                     hashtags.append(hashtag)
         return hashtags
