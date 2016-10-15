@@ -1,5 +1,6 @@
 # Hashdistribution
+---
+##Explore which hashtags go together and analyze user data!
 
-Wir suchen # basierend zusammenhängende Tweets und zeigen diese visuell auf einer Website.
-
-Weiteres folgt...
+Live Demo: http://100.100.219.102
+(Works only in the wlan of Jugendhackt)
