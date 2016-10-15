@@ -3,7 +3,7 @@ import os
 import crawler
 import TweetReader
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def all():
