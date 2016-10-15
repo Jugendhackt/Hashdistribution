@@ -5,7 +5,7 @@ import TweetReader
 
 app = Flask(__name__, static_url_path='')
 
-@app.route('/', methods=['POST', 'OPTIONS'])
+@app.route('/', methods=['GET', 'OPTIONS'])
 def all():
     response.headers.add('Access-Control-Allow-Origin', '*')
     ip = request.remote_addr
