@@ -12,7 +12,7 @@ class TweetText:
 
     def getHashtags(self):
         hashtags = []
-        stripchars = '.,;:?!…"'
+        stripchars = '.,;:?!…"()'
 
         text_parts = self.tweettext.split()
         for part in text_parts:

@@ -6,20 +6,20 @@ import json
 #with open("jugendhackt.json") as cachefile:
 #     json_data = json.loads(cachefile.read())
 main_hashtag = "jugendhackt"
-max_int = 5
+max_int = 2
 
 hashtagdict = {}
 
 
 def crawlHashtags(hashtagToCrawl, hashtagdict, depth=1):
     depth += 1
-    json_data = crawler.gettweets(hashtagToCrawl)
-    with open(".cache/RecursiveJugendhackt.json", 'w') as cachefile:
-        #json.dump(hashtagdict, cachefile)
-        cachefile.write(json.dumps(hashtagdict))
+    try:
+        json_data = crawler.gettweets(hashtagToCrawl)
+    except:  # take care of all those ugly errors if there are some
+        return hashtagdict
     hashtags = []
     if depth >= max_int:
-        return
+        return hashtagdict
     for tweet in json_data:
         tweettext = TweetParser.TweetText(tweet)
         #print(tweettext.getHashtags(), tweet)
@@ -28,7 +28,12 @@ def crawlHashtags(hashtagToCrawl, hashtagdict, depth=1):
                 hashtags.append(hashtag.lower())
 
     for hashtag in hashtags:
-        hashtagdict[hashtagToCrawl] = {}
-        crawlHashtags(hashtag, hashtagdict[hashtagToCrawl], depth)
+        hashtagdict[hashtag] = crawlHashtags(hashtag, hashtagdict, depth)
 
-crawlHashtags(main_hashtag, hashtagdict)
+    return hashtagdict
+
+hashtagdict = crawlHashtags(main_hashtag, hashtagdict)
+
+with open(".cache/RecursiveJugendhackt.json", 'w') as cachefile:
+    # json.dump(hashtagdict, cachefile)
+    cachefile.write(json.dumps(hashtagdict))
