@@ -14,8 +14,9 @@ hashtagdict = {}
 def crawlHashtags(hashtagToCrawl, hashtagdict, depth=1):
     depth += 1
     json_data = crawler.gettweets(hashtagToCrawl)
-    with open("RecursiveJugendhackt.json") as cachefile:
-        json.dump(hashtagdict, cachefile)
+    with open(".cache/RecursiveJugendhackt.json", 'w') as cachefile:
+        #json.dump(hashtagdict, cachefile)
+        cachefile.write(json.dumps(hashtagdict))
     hashtags = []
     if depth >= max_int:
         return
