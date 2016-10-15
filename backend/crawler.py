@@ -3,8 +3,8 @@
 
 from TwitterSearch import *
 from datetime import datetime
-import json, configparser
-import os, sys, time
+from backports import configparser
+import os, sys, time, json
 
 
 def gettweets(hashtag):
