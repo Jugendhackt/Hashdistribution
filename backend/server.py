@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import os
 
 app = Flask(__name__)
 
@@ -13,7 +14,12 @@ def all():
 @app.route('/debug')
 def debug():
     ip = request.remote_addr
-    return 'Client IP: ' + ip + "<hr>Commands:<br><li>clear_cache</li>"
+    passwd = request.args.get('passwd')
+    cmd = request.args.get('cmd')
+    if (cmd == "clear_cache"):
+        os.system("rm /home/pi/Hashdistribution/backend/.cache/*")
+        return '<center><h4>Cache geleert!</h4></center>'
+    return 'Client IP: ' + ip + '<hr>Commands:<br><li>?cmd=clear_cache&passwd=12345</li>'
 
 
 if __name__ == '__main__':
