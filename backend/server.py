@@ -1,11 +1,9 @@
 from flask import Flask, jsonify, request, send_from_directory
-from flask.ext.cors import CORS
 import os
 import crawler
 import TweetReader
 
 app = Flask(__name__, static_url_path='')
-CORS(app)
 
 @app.route('/', methods=['POST', 'OPTIONS'])
 def all():
