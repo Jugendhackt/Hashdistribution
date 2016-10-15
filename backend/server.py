@@ -8,7 +8,7 @@ def all():
     callback = request.args.get('callback')
     hastag = request.args.get('hashtag')
     depth = request.args.get('depth')
-    return '{0}({1})'.format(callback, {'client_ip':ip,'b':2,'hastag':hastag,'depth':depth})
+    return '{0}({1})'.format(callback, {'client_ip':ip,'hastag':hastag,'depth':depth})
 
 
 if __name__ == '__main__':
