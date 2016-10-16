@@ -9,7 +9,6 @@ import pprint
 #     json_data = json.loads(cachefile.read())
 main_hashtag = "#jugendhackt"
 max_int = 3
-maxdepth = 10
 
 def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
     outdict = copy.copy(indict)
@@ -19,7 +18,7 @@ def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
     except:  # take care of all those ugly errors if there are some
         return outdict
     hashtags = {}
-    if depth-1 >= maxdepth:
+    if depth >= maxdepth:
         return outdict
     for tweet in json_data:
         tweettext = TweetParser.TweetText(tweet)
