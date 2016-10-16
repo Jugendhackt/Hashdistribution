@@ -1,10 +1,9 @@
-from flask import Flask, jsonify, request, send_from_directory
+#!/usr/bin/env python
+# coding: utf8
+
+from flask import Flask, request
 import os
 import json
-
-from flask import Response
-
-import crawler
 import TweetReader
 
 app = Flask(__name__, static_url_path='')
@@ -45,21 +44,16 @@ def set_allow_origin(resp):
 
     return resp
 
+
 @app.route('/', methods=['GET', 'OPTIONS'])
 def all():
-    #response.headers.add('Access-Control-Allow-Origin', '*')
-    ip = request.remote_addr
-    #callback = request.args.get('callback')
     hashtag = request.args.get('hashtag')
     depth = request.args.get('depth')
-    # crawler.getjson(hashtag)
 
     if (hashtag is not None) and (depth is not None):
         Json = TweetReader.getTopHashtags(hashtag, depth)
     else:
         return json.dumps('{ error:"Please add the arguments hashtag and depth" }')
-
-    #callback = request.args.get('callback')
     return Json
 
 
