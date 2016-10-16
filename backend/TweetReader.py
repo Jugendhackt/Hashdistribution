@@ -38,7 +38,7 @@ def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth):
         outdict[hashtag] = {}
         outdict[hashtag]['ht'] = hashtag
         outdict[hashtag]['count'] = count
-        outdict[hashtag]['childs'] = list(crawlHashtags(hashtag, indict, depth))
+        outdict[hashtag]['childs'] = list(crawlHashtags(hashtag, indict, depth=4))
 
     return outdict
 
