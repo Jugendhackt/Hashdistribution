@@ -10,6 +10,7 @@ import pprint
 main_hashtag = "#jugendhackt"
 max_int = 3
 
+
 def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
     outdict = copy.copy(indict)
     depth += 1
