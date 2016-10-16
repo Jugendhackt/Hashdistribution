@@ -19,7 +19,7 @@
     var url = "http://localhost:8080?hashtag=jugendhackt&depth=4";
     var berlin_data = "data/berlin.json";
     var vserver_url = "http://lexodexo.de:8080?hashtag=" + hashtag + "&depth=4";
-    $.getJSON(vserver_url, function (raw) {
+    $.getJSON(berlin_data, function (raw) {
         data = raw;
     }).then(function (data) {
         nodes.push({id: 9999, label: data.ht});
