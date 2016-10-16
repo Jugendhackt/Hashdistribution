@@ -66,7 +66,7 @@ def all():
 @app.route('/debug')
 def debug():
     ip = request.remote_addr
-    list = os.listdir("/home/pi/Hashdistribution/backend/.cache/")  # dir is your directory path
+    list = os.listdir(".cache/")  # dir is your directory path
     cache_status = len(list)
     return '<b>Client IP:</b> ' + ip + '<hr><b>Cache:</b> ' + str(cache_status) + ' Dateien<hr>'
 
