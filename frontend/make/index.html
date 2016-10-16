@@ -1,0 +1,150 @@
+<link rel="stylesheet" href="node_modules/vis/dist/vis.min.css">
+<style>
+
+</style>
+<div id="graph"></div>
+<script src="node_modules/vis/dist/vis-network.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script>
+    var nodes = [];
+    var edges = [];
+    var data = {};
+    var rnd = 100;
+    function rint(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    var url_local = "data/hashtag.json";
+    var hashtag = location.search.split('hashtag=')[1];
+    var url = "http://localhost:8080?hashtag=jugendhackt&depth=4";
+    var berlin_data = "data/berlin.json";
+    var vserver_url = "http://lexodexo.de:8080?hashtag=" + hashtag + "&depth=4";
+    $.getJSON(berlin_data, function (raw) {
+        data = raw;
+    }).then(function (data) {
+        nodes.push({id: 9999, label: data.ht});
+        try {
+            for (var i = 0; i < data.childs.length; ++i) {
+                nodes.push({id: i, label: data.childs[i].ht, title: data.childs[i].count});
+                edges.push({scaling: {max: 50}, from: 9999, to: i, value: data.childs[i].count * 1, label: data.childs[i].count});
+                for (var a = 0; a < data.childs[i].childs.length; a++) {
+                    console.log("a");
+                    rnd = rint(1, 10000);
+                    nodes.push({
+                        id: i * 10 + a + 50 * rnd,
+                        label: data.childs[i].childs[a].ht,
+                        title: data.childs[i].childs[a].count
+                    });
+                    edges.push({scaling: {max: 50},
+                        from: i,
+                        to: i * 10 + a + 50 * rnd,
+                        value: data.childs[i].childs[a].count * 1,
+                        label: data.childs[i].childs[a].count
+                    });
+                    for (var b = 0; b < data.childs[i].childs[a].childs.length; b++) {
+                        console.log("b");
+                        rnd = rint(1, 10000);
+                        nodes.push({
+                            id: a * 15 + b + 100 * rnd,
+                            label: data.childs[i].childs[a].childs[b].ht,
+                            title: data.childs[i].childs[a].childs[b].count
+                        });
+                        edges.push({scaling: {max: 50},
+                            from: a,
+                            to: a * 15 + b + 100 * rnd,
+                            value: data.childs[i].childs[a].childs[b].count * 1,
+                            label: data.childs[i].childs[a].childs[b].count
+                        });
+                        for (var c = 0; b < data.childs[i].childs[a].childs[b].childs.length; c++) {
+                            console.log("c");
+                            rnd = rint(1, 10000);
+                            nodes.push({
+                                id: b * 15 + c + 100 * rnd,
+                                label: data.childs[i].childs[a].childs[b].childs[c].ht,
+                                title: data.childs[i].childs[a].childs[b].childs[c].count
+                            });
+                            edges.push({scaling: {max: 50},
+                                from: b,
+                                to: b * 15 + c + 100 * rnd,
+                                value: data.childs[i].childs[a].childs[b].count * 1,
+                                label: data.childs[i].childs[a].childs[b].count
+                            });
+                        }
+                    }
+
+                }
+            }
+        }catch(err){console.log(err);}
+        var container = document.getElementById('graph');
+        var data1 = {
+            nodes: new vis.DataSet(nodes),
+            edges: new vis.DataSet(edges)
+        };
+        var options = {
+            nodes: {
+                shape: 'dot',
+                font: {
+                    color: "#eee"
+                }
+            },
+            edges: {
+                font: {
+                    color: "#fff",
+                    size: 16,
+                    strokeWidth: 0,
+                    strokeColor: "#000",
+                    align: "middle"
+                }
+            },
+            autoResize: true,
+            height: '100%',
+            width: '100%'
+        };
+        var network = new vis.Network(container, data1, options);
+    });
+    /* if (data.childs[i].childs[a].childs.hasOwnProperty()) {
+     for (var b = 0; b < data.childs[i].childs[a].childs.length; b++) {
+     nodes.push({
+     id: i * 10 + b + 50,
+     label: data.childs[i].childs[a].childs[b].ht,
+     title: data.childs[i].childs[a].childs[b].count
+     });
+     edges.push({
+     from: i,
+     to: i * 10 + b + 50,
+     value: data.childs[i].childs[a].childs[b].count * 1,
+     label: data.childs[i].childs[a].childs[b].count
+     });
+     if (data.childs[i].childs[a].childs[b].childs.hasOwnProperty()) {
+     for (var c = 0; c < data.childs[i].childs[a].childs[b].childs.length; c++) {
+     nodes.push({
+     id: i * 10 + c + 50,
+     label: data.childs[i].childs[a].childs[b].childs[c].ht,
+     title: data.childs[i].childs[a].childs[b].childs[c].count
+     });
+     edges.push({
+     from: i,
+     to: i * 10 + c + 50,
+     value: data.childs[i].childs[a].childs[b].childs[c].count * 1,
+     label: data.childs[i].childs[a].childs[b].childs[c].count
+     });
+     if (data.childs[i].childs[a].childs[b].childs[c].childs.hasOwnProperty()) {
+     for (var d = 0; d < data.childs[i].childs[a].childs[b].childs[c].childs.length; d++) {
+     nodes.push({
+     id: i * 10 + d + 50,
+     label: data.childs[i].childs[a].childs[b].childs[c].childs[d].ht,
+     title: data.childs[i].childs[a].childs[b].childs[c].childs[d].count
+     });
+     edges.push({
+     from: i,
+     to: i * 10 + d + 50,
+     value: data.childs[i].childs[a].childs[b].childs[c].childs[d].count * 1,
+     label: data.childs[i].childs[a].childs[b].childs[c].childs[d].count
+     });
+     }
+     }
+     }
+     }
+     }
+     }
+     }*/
+</script>
