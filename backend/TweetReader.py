@@ -11,7 +11,7 @@ main_hashtag = "#jugendhackt"
 max_int = 3
 
 
-def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth):
+def crawlHashtags(hashtagToCrawl, indict, depth):
     outdict = copy.copy(indict)
     #depth += 1
     try:
@@ -38,15 +38,15 @@ def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth):
         outdict[hashtag] = {}
         outdict[hashtag]['ht'] = hashtag
         outdict[hashtag]['count'] = count
-        outdict[hashtag]['childs'] = list(crawlHashtags(hashtag, indict, depth, maxdepth=5))
+        outdict[hashtag]['childs'] = list(crawlHashtags(hashtag, indict, depth))
 
     return outdict
 
 
-def getTopHashtags(hashtag, maxdepth=5):
+def getTopHashtags(hashtag):
     hashtagdict = {}
     depth = 3
-    finallist = list(crawlHashtags(hashtag, hashtagdict, depth, maxdepth=5))
+    finallist = list(crawlHashtags(hashtag, hashtagdict, depth))
     finaldict = {"ht": "#" + hashtag, "count": 1, "childs": finallist}
     return json.dumps(finaldict)
 
