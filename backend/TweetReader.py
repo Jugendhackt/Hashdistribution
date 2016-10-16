@@ -9,7 +9,7 @@ import pprint
 #     json_data = json.loads(cachefile.read())
 main_hashtag = "#jugendhackt"
 max_int = 3
-maxdepth = 10
+
 
 def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
     outdict = copy.copy(indict)
