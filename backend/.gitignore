@@ -1,5 +1,7 @@
 # secret config files
 config.ini
+config2.ini
+config3.ini
 
 # virtual environment
 venv/
