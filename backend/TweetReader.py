@@ -11,9 +11,9 @@ main_hashtag = "#jugendhackt"
 max_int = 3
 
 
-def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
+def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth):
     outdict = copy.copy(indict)
-    depth += 1
+    #depth += 1
     try:
         json_data = crawler.gettweets(hashtagToCrawl)
     except:  # take care of all those ugly errors if there are some
@@ -43,7 +43,7 @@ def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
     return outdict
 
 
-def getTopHashtags(hashtag, maxdepth):
+def getTopHashtags(hashtag, 5):
     hashtagdict = {}
     finallist = list(crawlHashtags(hashtag, hashtagdict, int(maxdepth)).values())
     finaldict = {"ht": "#" + hashtag, "count": 1, "childs": finallist}
