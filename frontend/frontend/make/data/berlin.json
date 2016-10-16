@@ -1,0 +1,239 @@
+{
+  "count": 1,
+  "childs": [
+    {
+      "count": 8,
+      "childs": [],
+      "ht": "#ultraenmtv"
+    },
+    {
+      "count": 2,
+      "childs": [
+        {
+          "count": 3,
+          "childs": [
+            {
+              "count": 27,
+              "childs": [],
+              "ht": "#digitalisierung"
+            },
+            {
+              "count": 4,
+              "childs": [],
+              "ht": "#iot"
+            },
+            {
+              "count": 14,
+              "childs": [],
+              "ht": "#iiot"
+            },
+            {
+              "count": 44,
+              "childs": [],
+              "ht": "#industrie40"
+            },
+            {
+              "count": 6,
+              "childs": [],
+              "ht": "#ele16"
+            }
+          ],
+          "ht": "#it2i16next"
+        },
+        {
+          "count": 2,
+          "childs": [
+            {
+              "count": 5,
+              "childs": [],
+              "ht": "#ios"
+            },
+            {
+              "count": 9,
+              "childs": [],
+              "ht": "#itunes"
+            },
+            {
+              "count": 11,
+              "childs": [],
+              "ht": "#android"
+            },
+            {
+              "count": 11,
+              "childs": [],
+              "ht": "#tech"
+            },
+            {
+              "count": 9,
+              "childs": [],
+              "ht": "#usa"
+            }
+          ],
+          "ht": "#app"
+        },
+        {
+          "count": 3,
+          "childs": [
+            {
+              "count": 4,
+              "childs": [],
+              "ht": "#tag"
+            },
+            {
+              "count": 2,
+              "childs": [],
+              "ht": "#moneycoach"
+            },
+            {
+              "count": 3,
+              "childs": [],
+              "ht": "#risiko"
+            },
+            {
+              "count": 7,
+              "childs": [],
+              "ht": "#digitalisierung"
+            },
+            {
+              "count": 5,
+              "childs": [],
+              "ht": "#job"
+            }
+          ],
+          "ht": "#chance"
+        },
+        {
+          "count": 3,
+          "childs": [
+            {
+              "count": 8,
+              "childs": [],
+              "ht": "#analytics"
+            },
+            {
+              "count": 7,
+              "childs": [],
+              "ht": "#digitalisierung"
+            },
+            {
+              "count": 14,
+              "childs": [],
+              "ht": "#m2m"
+            },
+            {
+              "count": 17,
+              "childs": [],
+              "ht": "#bigdata"
+            },
+            {
+              "count": 3,
+              "childs": [],
+              "ht": "#cloud"
+            }
+          ],
+          "ht": "#iot"
+        },
+        {
+          "count": 5,
+          "childs": [
+            {
+              "count": 7,
+              "childs": [],
+              "ht": "#merkel"
+            },
+            {
+              "count": 10,
+              "childs": [],
+              "ht": "#it2i16next"
+            },
+            {
+              "count": 8,
+              "childs": [],
+              "ht": "#dlt16"
+            },
+            {
+              "count": 8,
+              "childs": [],
+              "ht": "#iot"
+            },
+            {
+              "count": 19,
+              "childs": [],
+              "ht": "#digitalisierung"
+            }
+          ],
+          "ht": "#industrie40"
+        }
+      ],
+      "ht": "#digitalisierung"
+    },
+    {
+      "count": 3,
+      "childs": [
+        {
+          "count": 3,
+          "childs": [
+            {
+              "count": 3,
+              "childs": [],
+              "ht": "#schaffhausen"
+            },
+            {
+              "count": 39,
+              "childs": [],
+              "ht": "#m\u00e4nnlich"
+            },
+            {
+              "count": 28,
+              "childs": [],
+              "ht": "#weiblich"
+            },
+            {
+              "count": 3,
+              "childs": [],
+              "ht": "#vermisste"
+            },
+            {
+              "count": 91,
+              "childs": [],
+              "ht": "#katze"
+            }
+          ],
+          "ht": "#gefunden"
+        },
+        {
+          "count": 3,
+          "childs": [],
+          "ht": "#ger"
+        },
+        {
+          "count": 6,
+          "childs": [],
+          "ht": "#wedding"
+        },
+        {
+          "count": 4,
+          "childs": [],
+          "ht": "#nowplaying"
+        },
+        {
+          "count": 7,
+          "childs": [],
+          "ht": "#wetter"
+        }
+      ],
+      "ht": "#berlin"
+    },
+    {
+      "count": 11,
+      "childs": [],
+      "ht": "#ultrabrasil"
+    },
+    {
+      "count": 10,
+      "childs": [],
+      "ht": "#ultralive"
+    }
+  ],
+  "ht": "#berlin"
+}

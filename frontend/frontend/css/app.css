@@ -1,0 +1,28 @@
+#bgImg {
+    width: 100%;
+    position: absolute;
+    top: -100px;
+    z-index: -9999;
+    background: #333;
+    overflow: hidden;
+}
+.item {
+    background: #333;
+    color: #888;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+body {
+    background: #333;
+}
+#herounit {
+    background: #222;
+    z-index: 999;
+}
+#herounit h1 {
+    color: #fff;
+}
+#querywrapper {
+    margin-top: 15%;
+}

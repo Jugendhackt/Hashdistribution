@@ -1,0 +1,44 @@
+{
+"ht":"#jugenhackt",
+"count":88,
+"childs":[{
+    "ht":"db",
+     "count":12,
+     "childs":[{
+        "ht":"coding",
+        "count":8
+     }]
+},
+{
+    "ht":"mentoren",
+     "count":18,
+     "childs":[{
+        "ht":"diy",
+        "count":5
+     }]
+},
+{
+    "ht":"bombe",
+     "count":19,
+     "childs":[{
+        "ht":"prank",
+        "count":2
+     }]
+},
+{
+     "ht":"livestream",
+      "count":20,
+      "childs":[{
+         "ht":"youtube",
+         "count":2
+      }]
+ },
+ {
+      "ht":"channel",
+       "count":16,
+       "childs":[{
+          "ht":"jh",
+          "count":3
+       }]
+  }]
+}
