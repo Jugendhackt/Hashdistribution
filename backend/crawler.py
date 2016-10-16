@@ -36,8 +36,8 @@ def gettweets(hashtag):
     tso.set_include_entities(False)  # Kein Entity Zeug ausgeben
 
     Config = configparser.ConfigParser()
-    if os.path.isfile("config.ini"):
-        Config.read("config.ini")
+    if os.path.isfile("config2.ini"):
+        Config.read("config2.ini")
     else:
         print("The config file does not exist, please create a new config with the example file")
         sys.exit()
