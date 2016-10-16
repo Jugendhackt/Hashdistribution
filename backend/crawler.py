@@ -2,19 +2,19 @@
 # coding: utf8
 
 from TwitterSearch import *
-from datetime import datetime
 import os, sys, time, json, configparser
 import random
+
 
 def chachetime(datei):
     systime = time.time()
     filetime = os.path.getmtime(datei)
     global daysDiff
-    daysDiff = (systime-filetime)
-    if(daysDiff < 3600): # Wenn Cache älter als 1 Stunde
-        return True # Chache aktuell
+    daysDiff = (systime - filetime)
+    if (daysDiff < 86400):  # Wenn Cache älter als 1 Tag
+        return True  # Chache aktuell
     else:
-        return False # Neuen Cache erstellen
+        return False  # Neuen Cache erstellen
 
 
 def gettweets(hashtag):
@@ -57,12 +57,12 @@ def gettweets(hashtag):
         consumer_secret=consumer_secret,
         access_token=access_token,
         access_token_secret=access_token_secret
-        )
+    )
 
     tweets = set()
     counter = 0
     for tweet in ts.search_tweets_iterable(tso):
-        if(counter <= 100):
+        if (counter <= 100):
             counter += 1
             tweets.add(tweet['text'])
         else:
@@ -75,6 +75,6 @@ def gettweets(hashtag):
         cachefile.write(tweetsasjson)
 
     if (datei == "jugendhackt.json"):
-        #os.system("sudo cp /home/pi/Hashdistribution/backend/.cache/jugendhackt.json /var/www/html/data/jh.json")
+        # os.system("sudo cp /home/pi/Hashdistribution/backend/.cache/jugendhackt.json /var/www/html/data/jh.json")
         print("Startseiten Tweets aktualisiert!")
     return tweets

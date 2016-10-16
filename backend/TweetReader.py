@@ -1,14 +1,7 @@
 import TweetParser
 import crawler
 import json
-import server
 import copy
-import pprint
-
-# with open("jugendhackt.json") as cachefile:
-#     json_data = json.loads(cachefile.read())
-main_hashtag = "#jugendhackt"
-max_int = 3
 
 
 def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
@@ -23,7 +16,6 @@ def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
         return outdict
     for tweet in json_data:
         tweettext = TweetParser.TweetText(tweet)
-        # print(tweettext.getHashtags(), tweet)
         for hashtag in tweettext.getHashtags():
             if (hashtag.lower() != hashtagToCrawl.lower()) and (len(hashtag) > 1):
                 hashtag = hashtag.lower()
@@ -48,11 +40,3 @@ def getTopHashtags(hashtag, maxdepth):
     finallist = list(crawlHashtags(hashtag, hashtagdict, int(maxdepth)).values())
     finaldict = {"ht": "#" + hashtag, "count": 1, "childs": finallist}
     return json.dumps(finaldict)
-
-# with open(".cache/RecursiveJugendhackt.json", 'w') as cachefile:
-#    # json.dump(hashtagdict, cachefile)
-#    #import pdb;pdb.set_trace()
-#    cachefile.write(json.dumps(finaldict))
-
-
-# print(json.dumps(finaldict, indent=4))
