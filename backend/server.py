@@ -54,7 +54,7 @@ def all():
     # crawler.getjson(hashtag)
 
     if (hashtag is not None) and (depth is not None):
-        Json = TweetReader.getTopHashtags(hashtag, depth)
+        Json = TweetReader.getTopHashtags(hashtag)
     else:
         return json.dumps('{ error:"Please add the arguments hashtag and depth" }')
 
