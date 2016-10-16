@@ -19,7 +19,7 @@ def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth):
     except:  # take care of all those ugly errors if there are some
         return outdict
     hashtags = {}
-    if depth >= maxdepth:
+    if depth >= 2:
         return outdict
     for tweet in json_data:
         tweettext = TweetParser.TweetText(tweet)
@@ -38,14 +38,14 @@ def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth):
         outdict[hashtag] = {}
         outdict[hashtag]['ht'] = hashtag
         outdict[hashtag]['count'] = count
-        outdict[hashtag]['childs'] = list(crawlHashtags(hashtag, indict, depth=2, maxdepth=5))
+        outdict[hashtag]['childs'] = list(crawlHashtags(hashtag, indict, depth, maxdepth=5))
 
     return outdict
 
 
 def getTopHashtags(hashtag, maxdepth=5):
     hashtagdict = {}
-    finallist = list(crawlHashtags(hashtag, hashtagdict, maxdepth=5, depth=2))
+    finallist = list(crawlHashtags(hashtag, hashtagdict, maxdepth=5, depth))
     finaldict = {"ht": "#" + hashtag, "count": 1, "childs": finallist}
     return json.dumps(finaldict)
 
