@@ -59,8 +59,13 @@ def gettweets(hashtag):
         )
 
     tweets = set()
+    counter = 0
     for tweet in ts.search_tweets_iterable(tso):
-        tweets.add(tweet['text'])
+        if(counter <= 100):
+            counter += 1
+            tweets.add(tweet['text'])
+        else:
+            break
 
     tweets = list(tweets)
 
