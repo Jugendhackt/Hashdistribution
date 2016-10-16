@@ -48,13 +48,11 @@ def set_allow_origin(resp):
 def all():
     #response.headers.add('Access-Control-Allow-Origin', '*')
     ip = request.remote_addr
-    callback = request.args.get('callback')
     hashtag = request.args.get('hashtag')
     depth = request.args.get('depth')
     # crawler.getjson(hashtag)
     json = TweetReader.getTopHashtags(hashtag, depth)
-    callback = request.args.get('callback')
-    return '{0}({1})'.format(callback, json)
+    return json
 
 
 @app.route('/debug')
