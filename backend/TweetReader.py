@@ -19,7 +19,7 @@ def crawlHashtags(hashtagToCrawl, indict, maxdepth, depth=0):
     except:  # take care of all those ugly errors if there are some
         return outdict
     hashtags = {}
-    if depth >= maxdepth:
+    if depth-1 >= maxdepth:
         return outdict
     for tweet in json_data:
         tweettext = TweetParser.TweetText(tweet)
