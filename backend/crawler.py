@@ -4,6 +4,7 @@
 from TwitterSearch import *
 from datetime import datetime
 import os, sys, time, json, configparser
+import random
 
 def chachetime(datei):
     systime = time.time()
@@ -36,8 +37,11 @@ def gettweets(hashtag):
     tso.set_include_entities(False)  # Kein Entity Zeug ausgeben
 
     Config = configparser.ConfigParser()
-    if os.path.isfile("config2.ini"):
-        Config.read("config2.ini")
+    configfiles = ['config.ini', 'config2.ini', 'config3.ini']
+    configfile = random.choice(configfiles)
+    print("Verwende " + configfile)
+    if os.path.isfile(configfile):
+        Config.read(configfile)
     else:
         print("The config file does not exist, please create a new config with the example file")
         sys.exit()
