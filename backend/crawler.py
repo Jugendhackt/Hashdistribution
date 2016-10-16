@@ -27,7 +27,10 @@ def gettweets(hashtag):
         with open(datei) as cachefile:  # Lese Cache aus
             print("Ausgabe aus Cache " + datei)
             print("Cache wurde zuletzt vor " + str(round(daysDiff / 3600, 2)) + " Stunde/n aktualisiert.")
-            return json.loads(cachefile.read())  # Gebe Cache aus
+            temp = cachefile.read()
+            cachefile.close()
+            print(temp)
+            return json.loads(temp)  # Gebe Cache aus
 
     print("Chache {} wird neu erstellt".format(datei))
     tso = TwitterSearchOrder()  # Twitter Objekt erstellen
